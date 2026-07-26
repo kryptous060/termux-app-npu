@@ -254,3 +254,10 @@ The `versionName` in `build.gradle` files of Termux and its plugin apps must fol
 - You also need to recompile bootstrap zip for the new package name. Check [here](https://github.com/termux/termux-app/issues/1983) and [here](https://github.com/termux/termux-app/issues/2081#issuecomment-865280111) for experimental work on it.
 - Currently, not all plugins use `TermuxConstants` from `termux-shared` library and have hardcoded `com.termux` values and will need to be manually patched.
 - If forking termux plugins, check [Forking and Local Development](https://github.com/termux/termux-app/wiki/Termux-Libraries#forking-and-local-development) for info on how to use termux libraries for plugins.
+
+## NPU Setup
+To set up the NPU-optimized llama.cpp, run:
+```bash
+chmod +x scripts/setup_llama.sh
+./scripts/setup_llama.sh
+```
