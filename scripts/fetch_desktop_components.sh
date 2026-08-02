@@ -25,9 +25,13 @@ echo "Fetching Turnip/Zink Drivers..."
 TURNIP_URL=$(curl -s https://api.github.com/repos/alexvorxx/Zink-Mesa-Xlib/releases/latest | jq -r '.assets[] | select(.name | contains("zip") or contains("tar.gz")) | .browser_download_url' | head -n 1)
 curl -L -o turnip.zip "$TURNIP_URL"
 
-# 5. Wine Builds
-echo "Fetching Custom Wine..."
-WINE_URL=$(curl -s https://api.github.com/repos/GunaCharanTeja/WinlatorMali/releases/latest | jq -r '.assets[] | select(.name | contains("wine") or contains("tar.xz")) | .browser_download_url' | head -n 1)
-curl -L -o wine_build.tar.xz "$WINE_URL"
+# 6. UMU-Launcher & GE-Proton
+echo "Fetching UMU-Launcher..."
+UMU_URL=$(curl -s https://api.github.com/repos/Open-Wine-Components/umu-launcher/releases/latest | jq -r '.assets[] | select(.name | contains("x86_64")) | .browser_download_url' | head -n 1)
+curl -L -o umu-launcher.tar.xz "$UMU_URL"
+
+echo "Fetching GE-Proton..."
+PROTON_URL=$(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | jq -r '.assets[] | select(.name | contains("tar.gz")) | .browser_download_url' | head -n 1)
+curl -L -o GE-Proton.tar.gz "$PROTON_URL"
 
 echo "All components fetched to /tmp/desktop_fetch. Please move them to your Btrfs image/chroot as needed."
