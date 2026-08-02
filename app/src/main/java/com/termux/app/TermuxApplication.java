@@ -11,6 +11,20 @@ public class TermuxApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        // Ensure binaries are set up on first run
+        new Thread(() -> {
+            java.io.File llamaBin = new java.io.File(System.getProperty("user.home") + "/llama.cpp/build/bin/llama-cli");
+            java.io.File sdBin = new java.io.File(System.getProperty("user.home") + "/stable-diffusion.cpp/build/bin/sd-cli");
+            if (!llamaBin.exists() || !sdBin.exists()) {
+                try {
+                    Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_llama.sh").waitFor();
+                    Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_sd.sh").waitFor();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
         // Set crash handler for the app
         TermuxCrashUtils.setCrashHandler(this);
 
