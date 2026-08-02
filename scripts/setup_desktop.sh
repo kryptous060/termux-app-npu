@@ -15,11 +15,20 @@ fi
 DEBIAN_ROOT="/debian_root"
 mkdir -p "$DEBIAN_ROOT"
 
-# Extract Proton build to the compatibilitytools directory
-# Note: This script assumes it is in /data/data/com.termux/files/home/Termux-app-npu/scripts/
-PROTON_ARCHIVE="/data/data/com.termux/files/home/Termux-app-npu/assets/Proton-9.0.tar.xz"
+# Assets path
+ASSETS_DIR="/data/data/com.termux/files/home/Termux-app-npu/assets"
+
+# Extract Proton
 PROTON_DIR="$DEBIAN_ROOT/root/.local/share/Steam/compatibilitytools.d/GE-Proton"
 mkdir -p "$PROTON_DIR"
-tar -xf "$PROTON_ARCHIVE" -C "$PROTON_DIR"
+tar -xf "$ASSETS_DIR/Proton-9.0.tar.xz" -C "$PROTON_DIR"
+
+# Extract Components
+INSTALL_DIR="$DEBIAN_ROOT/usr/local/"
+tar -xf "$ASSETS_DIR/Box64.tar.xz" -C "$INSTALL_DIR"
+tar -xf "$ASSETS_DIR/FEX.tar.xz" -C "$INSTALL_DIR"
+tar -xf "$ASSETS_DIR/DXVK.tar.xz" -C "$INSTALL_DIR"
+tar -xf "$ASSETS_DIR/Vkd3d.tar.xz" -C "$INSTALL_DIR"
+tar -xf "$ASSETS_DIR/WOWBox64.tar.xz" -C "$INSTALL_DIR"
 
 echo "Environment prepared. Run 'desktop' to enter."
