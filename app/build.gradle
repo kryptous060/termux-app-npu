@@ -103,8 +103,18 @@ android {
         }
         offline {
             dimension "provisioning"
-            // We can define buildConfigField to allow scripts to know if they are offline
             buildConfigField "boolean", "IS_OFFLINE", "true"
+        }
+    }
+
+    // Task to create IS_OFFLINE file for offline flavor
+    android.applicationVariants.all { variant ->
+        if (variant.productFlavors.any { it.name == 'offline' }) {
+            variant.preBuildProvider.get().doFirst {
+                def file = new File(projectDir, 'src/main/assets/IS_OFFLINE')
+                file.parentFile.mkdirs()
+                file.text = 'true'
+            }
         }
     }
 
