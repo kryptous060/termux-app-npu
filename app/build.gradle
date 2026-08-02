@@ -96,6 +96,18 @@ android {
         }
     }
 
+    flavorDimensions "provisioning"
+    productFlavors {
+        online {
+            dimension "provisioning"
+        }
+        offline {
+            dimension "provisioning"
+            // We can define buildConfigField to allow scripts to know if they are offline
+            buildConfigField "boolean", "IS_OFFLINE", "true"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
