@@ -15,6 +15,7 @@ public class FastApiControllerService extends Service {
             Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_llama.sh").waitFor();
             Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_sd.sh").waitFor();
             Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_gemini.sh").waitFor();
+            Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_interpreter.sh").waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }
