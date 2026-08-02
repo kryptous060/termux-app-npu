@@ -15,6 +15,11 @@ fi
 DEBIAN_ROOT="/debian_root"
 mkdir -p "$DEBIAN_ROOT"
 
-# This setup script would normally run as root.
-# In a Termux context, this needs to be executed via a su-enabled environment.
+# Extract Proton build to the compatibilitytools directory
+# Note: This script assumes it is in /data/data/com.termux/files/home/Termux-app-npu/scripts/
+PROTON_ARCHIVE="/data/data/com.termux/files/home/Termux-app-npu/assets/Proton-9.0.tar.xz"
+PROTON_DIR="$DEBIAN_ROOT/root/.local/share/Steam/compatibilitytools.d/GE-Proton"
+mkdir -p "$PROTON_DIR"
+tar -xf "$PROTON_ARCHIVE" -C "$PROTON_DIR"
+
 echo "Environment prepared. Run 'desktop' to enter."
