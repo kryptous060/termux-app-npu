@@ -1,8 +1,14 @@
 #!/bin/bash
+# Install python and pip if not present
+if ! command -v python &> /dev/null; then
+    echo "Python not found. Installing..."
+    pkg update -y && pkg install -y python
+fi
+
 # Install open-interpreter
 echo "Installing open-interpreter..."
-# Assuming Python environment is available (as per FastAPI integration)
 pip install open-interpreter
+...
 
 # Create a wrapper or configure it to use the local llama-cli
 # Open Interpreter supports local LLMs. We need to point it to the llama-cli binary or 
