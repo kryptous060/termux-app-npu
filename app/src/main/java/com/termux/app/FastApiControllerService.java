@@ -12,10 +12,16 @@ public class FastApiControllerService extends Service {
         super.onCreate();
         // Run setup scripts
         try {
-            Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_llama.sh").waitFor();
-            Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_sd.sh").waitFor();
-            Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_gemini.sh").waitFor();
-            Runtime.getRuntime().exec("/data/data/com.termux/files/home/Termux-app-npu/scripts/setup_interpreter.sh").waitFor();
+            String homeDirPath = new java.io.File(getFilesDir(), "home").getAbsolutePath();
+            java.io.File repoDir = new java.io.File(homeDirPath, "termux-app-npu");
+            if (!repoDir.exists()) {
+                repoDir = new java.io.File(homeDirPath, "Termux-app-npu");
+            }
+            String scriptsPath = repoDir.getAbsolutePath() + "/scripts/";
+            Runtime.getRuntime().exec(scriptsPath + "setup_llama.sh").waitFor();
+            Runtime.getRuntime().exec(scriptsPath + "setup_sd.sh").waitFor();
+            Runtime.getRuntime().exec(scriptsPath + "setup_gemini.sh").waitFor();
+            Runtime.getRuntime().exec(scriptsPath + "setup_interpreter.sh").waitFor();
         } catch (Exception e) {
             e.printStackTrace();
         }

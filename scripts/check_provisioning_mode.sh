@@ -1,6 +1,6 @@
 #!/bin/bash
 # Returns 'offline' if flag file exists, otherwise 'online'
-if [ -f "/data/data/com.termux/files/home/Termux-app-npu/assets/IS_OFFLINE" ]; then
+if [ -f "$HOME/termux-app-npu/assets/IS_OFFLINE" ] || [ -f "$HOME/Termux-app-npu/assets/IS_OFFLINE" ]; then
     echo "offline"
 else
     echo "online"

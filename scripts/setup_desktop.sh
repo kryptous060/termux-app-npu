@@ -16,7 +16,11 @@ DEBIAN_ROOT="/debian_root"
 mkdir -p "$DEBIAN_ROOT"
 
 # Assets path
-ASSETS_DIR="/data/data/com.termux/files/home/Termux-app-npu/assets"
+if [ -d "$HOME/termux-app-npu/assets" ]; then
+    ASSETS_DIR="$HOME/termux-app-npu/assets"
+else
+    ASSETS_DIR="$HOME/Termux-app-npu/assets"
+fi
 
 # Extract Components (Proton, Box64, FEX, DXVK, etc)
 PROTON_DIR="$DEBIAN_ROOT/root/.local/share/Steam/compatibilitytools.d/GE-Proton"
